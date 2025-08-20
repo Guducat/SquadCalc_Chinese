@@ -249,10 +249,34 @@
                 font-size: 1.1em;
                 .respawn {
                     margin-bottom: 0.3em;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    gap: 0.3em;
+                    .respawn-icon {
+                        width: 1em;
+                        height: 1em;
+                        fill: currentColor;
+                        flex-shrink: 0;
+                    }
+
                 }
                 .count-delay {
                     min-height: 1em;
-                    color: variables.$mainColor;;
+                    color: variables.$mainColor;
+                    .delay {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        gap: 0.3em;
+                        .delay-icon {
+                            width: 1em;
+                            height: 1em;
+                            fill: currentColor;
+                            flex-shrink: 0;
+                        }
+
+                    }
                 }
             }
         }
@@ -339,7 +363,7 @@
         background-color: transparent;
         border-bottom: 1px solid variables.$mainTxtColor;
         line-height: 2.188em;
-        min-width: 200px;
+        min-width: 187px;
         padding-bottom: 0.3em;
         text-transform: uppercase;
     }

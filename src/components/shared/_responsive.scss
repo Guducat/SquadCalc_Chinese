@@ -72,17 +72,39 @@
             }
         }
         #factionMenu {
+            width: 100%;
+            max-width: 98vw;
+            gap: 1em;
+            padding: 0 0.5em;
             #team1, #team2 {
+                width: calc(50% - 0.5em);
+                min-width: 0;
                 .selectors {
                     flex-direction: column;
+                    gap: 0.5em;
                     .unitSelector {
-                        padding-top: 5px;
+                        padding-top: 0;
                     }
                     .factionSelector {
-                        .select2-container {
-                            min-width: 70px;
-                        }
+                        width: auto;
                     }
+                }
+            }
+        }
+        #pinButtons {
+            margin: 0.75em 0;
+            gap: 0.5em;
+            .btn-pin {
+                padding: 0.4em 0.8em;
+                font-size: 0.9em;
+            }
+        }
+
+        #factionVehicles {
+            .vehicle-meta {
+                .respawn-text,
+                .delay-text {
+                    display: none;
                 }
             }
         }
@@ -131,6 +153,37 @@
 /* -- WIDTH < 568px -- */
 @media screen and (width <= 35em) {
     #factionsDialog {
+        #factionMenu {
+            gap: 0.5em;
+            padding: 0 0.25em;
+            #team1, #team2 {
+                width: calc(50% - 0.2em);
+                h2 {
+                    font-size: 1.5em;
+                    padding: 0.25em 0;
+                }
+                .selectors {
+                    gap: 0.4em;
+                }
+            }
+        }
+        #pinButtons {
+            margin: 0.5em 0;
+            gap: 0.4em;
+            .btn-pin {
+                padding: 0.35em 0.7em;
+                font-size: 0.85em;
+            }
+        }
+
+        #factionVehicles {
+            .vehicle-meta {
+                .respawn-text,
+                .delay-text {
+                    display: none;
+                }
+            }
+        }
         #factionVehicles {
             .card-content {
                 padding: 0.3em;
@@ -160,6 +213,37 @@
 /* -- WIDTH < 512px -- */
 @media screen and (width <= 32em) {
     #factionsDialog {
+        #factionMenu {
+            gap: 0.25em;
+            padding: 0;
+            #team1, #team2 {
+                width: calc(50% - 0.125em);
+                h2 {
+                    font-size: 1.3em;
+                    padding: 0.2em 0;
+                }
+                .selectors {
+                    gap: 0.3em;
+                }
+            }
+        }
+        #pinButtons {
+            margin: 0.4em 0;
+            gap: 0.3em;
+            .btn-pin {
+                padding: 0.3em 0.6em;
+                font-size: 0.8em;
+            }
+        }
+        // 继续隐藏图标文字
+        #factionVehicles {
+            .vehicle-meta {
+                .respawn-text,
+                .delay-text {
+                    display: none;
+                }
+            }
+        }
         #factionVehicles {
             .card-content {
                 padding: 0.3em;
@@ -185,7 +269,45 @@
             }
         }
     }
-} 
+}
+
+/* -- WIDTH <= 375px (iPhone SE) -- */
+@media screen and (width <= 23.4375em) {
+    #factionsDialog {
+        #factionMenu {
+            gap: 0.2em;
+            padding: 0;
+            #team1, #team2 {
+                width: calc(50% - 0.1em);
+                h2 {
+                    font-size: 1.2em;
+                    padding: 0.15em 0;
+                }
+                .selectors {
+                    gap: 0.25em;
+                }
+            }
+        }
+        #pinButtons {
+            margin: 0.3em 0;
+            gap: 0.25em;
+            .btn-pin {
+                padding: 0.25em 0.5em;
+                font-size: 0.75em;
+                min-height: 2.2em;
+            }
+        }
+        // 继续隐藏图标文字
+        #factionVehicles {
+            .vehicle-meta {
+                .respawn-text,
+                .delay-text {
+                    display: none;
+                }
+            }
+        }
+    }
+}
 
 /* ≥ 768px */
 
@@ -413,11 +535,33 @@
     }
 }
 
-/* Fix for mobile devices - prevent hover states from sticking on specific elements */
+/* Fix for mobile devices */
 @media (hover: none) {
-    // Settings controls buttons
-    #settingsControls button:not(.active):hover {
+    // fix settings "layer" button menu gets invisible
+    #settingsControls button {
+        svg { fill: variables.$mainTxtColor; }
+        &:not(.active):hover,
+        &:not(.active):focus,
+        &:not(.active):active {
+            background-color: #fff;
+            color: black;
+            outline: none;
+        }
+    }
+
+    .select2-container:hover,
+    .select2-selection:hover,
+    .select2-results__option:hover {
         background-color: inherit !important;
+    }
+
+    .select2-container,
+    .select2-container--open,
+    .select2-dropdown {
+        z-index: 10050;
+    }
+    .select2-dropdown {
+        background-color: variables.$mainBGColor;
     }
 
     // Map layer menu buttons
@@ -437,4 +581,19 @@
     .closeModal:hover {
         background-color: inherit !important;
     }
+
+    #links svg:hover,
+    #links a:hover {
+        transform: none !important;
+        fill: variables.$mainTxtColor !important;
+        background-color: transparent !important;
+    }
+
+    #pinButtons .btn-pin:not(.active):hover,
+    #pinButtons .btn-pin:not(.active):focus,
+    #pinButtons .btn-pin:not(.active):active {
+        background-color: grey !important;
+        outline: none;
+    }
+
 }
